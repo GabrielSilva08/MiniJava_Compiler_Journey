@@ -54,4 +54,4 @@ A estrutura do compilador, os nomes das fases e várias decisões arquiteturais 
 1. Clone o repositório:
    
    ```bash
-   git clone https://github.com/seu-usuario/compiler-minijava.git
+   git clone https://github.com/seu-usuario/MiniJava_Compiler_Journey.git
