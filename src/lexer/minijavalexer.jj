@@ -1,0 +1,69 @@
+/**
+*  Arquivo ".jj" que será utilizado pelo javaCC 
+*  para construir as etapas de análise léxica (atual) 
+*  e sintática (próxima etapa). No momento, tem-se 
+*  implementado apenas o gerador de tokens (scanner) que será
+*  utilizado em etapas futuras.
+*
+*  OBS: Esse arquivo será modificado na próxima etapa 
+*  para incluir a análise sintática (parser)!
+*/
+
+
+/* Unidade de compilação java. É a partir dele que as etapas de análises serão feitas.*/
+PARSER_BEGIN(MiniJavaLexer)
+    class MiniJavaLexer {}
+PARSER_END(MiniJavaLexer)
+
+
+/* Definição dos elementos que o scanner irá ignorar, como comentários, espaço em branco etc */
+SKIP : {
+    <"//" (["a"-"z"]|["A"-"Z"]|"_"|["0"-"9"]|" "|"."|","|";"|"("|")"|"{"|"}"|"["|"]"|"="|"+"|"-"|"\"")* ("\n"|"\r"|"\r\n") >
+|   <"/*" (["a"-"z"]|["A"-"Z"]|"_"|["0"-"9"]|" "|"."|","|";"|"("|")"|"{"|"}"|"["|"]"|"\n"|"\r"|"\r\n"|"="|"+"|"-"|"\"")* "*/" > 
+|    " " 
+|    "\t" 
+|    "\n"
+|    "\r" 
+}
+
+
+/* Definição dos tokens da linguagem MiniJava */
+TOKEN : {
+    < CLASS: "class" > 
+|   < PUBLIC: "public" > 
+|   < STATIC: "static" > 
+|   < VOID: "void" > 
+|   < MAIN: "main" > 
+|   < EXTENDS: "extends" > 
+|   < RETURN: "return" >
+|   < STRING: "String">
+|   < INT: "int" >
+|   < BOOLEAN: "boolean" >
+|   < IF: "if" > 
+|   < ELSE: "else" > 
+|   < WHILE: "while" > 
+|   < TRUE: "true" >
+|   < FALSE: "false" >
+|   < THIS: "this" > 
+|   < NEW: "new" > 
+|   < LENGTH: "length" > 
+|   < SYSTEM_OUT_PRINTLN: "System.out.println">
+|   < ID: (["a"-"z"]|["A"-"Z"])(["a"-"z"]|["A"-"Z"]|"_"|["0"-"9"])* >
+|   < INTEGER_LITERAL: (["0"-"9"])+ >
+|   < AND: "&&" >
+|   < LT: "<" >
+|   < PLUS: "+" >
+|   < MINUS: "-" >
+|   < TIMES: "*" >
+|   < NOT: "!" >
+|   < ASSIGN: "=" > 
+|   < DOT: "." > 
+|   < COMMA: "," > 
+|   < SEMICOLON: ";" >
+|   < LPAREN: "(" > 
+|   < RPAREN: ")" > 
+|   < LBRACE: "{" > 
+|   < RBRACE: "}" > 
+|   < LBRACK: "[" > 
+|   < RBRACK: "]" >
+}
