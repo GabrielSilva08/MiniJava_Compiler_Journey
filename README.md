@@ -24,8 +24,8 @@ Não é necessário entender todo o compilador para acompanhar o projeto. Cada b
 
 | Etapa | Descrição | Branch | Status |
 |------|----------|--------|--------|
-| 1 | Análise Léxica | `step-01-lexer` | ⏳ Em andamento |
-| 2 | Análise Sintática | `step-02-parser` | ❌ Não iniciado |
+| 1 | Análise Léxica | `step-01-lexer` | ✅ Concluído |
+| 2 | Análise Sintática | `step-02-parser` | ⏳ Em andamento |
 | 3 | Análise Semântica | `step-03-semantic-analysis` | ❌ Não iniciado |
 | 4 | Tradução para Código Intermediário (IR) | `step-04-ir-translation` | ❌ Não iniciado |
 | 5 | Seleção de Instruções | `step-05-instruction-selection` | ❌ Não iniciado |
