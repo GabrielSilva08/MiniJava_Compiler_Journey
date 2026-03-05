@@ -32,18 +32,15 @@ public class Token implements java.io.Serializable {
   // é também um token regular. 
   public Token next;
 
-  /**
-   * This field is used to access special tokens that occur prior to this
-   * token, but after the immediately preceding regular (non-special) token.
-   * If there are no such special tokens, this field is set to null.
-   * When there are more than one such special token, this field refers
-   * to the last of these special tokens, which in turn refers to the next
-   * previous special token through its specialToken field, and so on
-   * until the first special token (whose specialToken field is null).
-   * The next fields of special tokens refer to other special tokens that
-   * immediately follow it (without an intervening regular token).  If there
-   * is no such token, this field is null.
-   */
+
+  // Este campo é usado para acessar tokens especiais que ocorreram a priori deste token, mas 
+  // depois do token regular (não especial) imediatamente anterior. Se não houver tais tokens
+  // especiais, este campo será definido como nulo. Quando houver mais de um token especial, 
+  // este campo se refere ao último desses tokens especiais, que por sua vez se refere ao próximo
+  // token especial anterior por meio de seu campo specialToken, e assim por diante até o primeiro
+  // token especial (cujo campo specialToken é nulo). Os campos next dos tokens especiais se referem
+  // a outros tokens especiais que o seguem imediatamente (sem um token regular intermediário). Se
+  // não houver tal token, este campo será nulo.
   public Token specialToken;
 
   /**
@@ -54,6 +51,7 @@ public class Token implements java.io.Serializable {
    * Any subclass of Token that actually wants to return a non-null value can
    * override this method as appropriate.
    */
+  // Um valor de atributo opcional do Token.
   public Object getValue() {
     return null;
   }
