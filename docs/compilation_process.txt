@@ -1,0 +1,3 @@
+javac -d build src\parser\*.java src\semantic\SymbolTable\*.java src\semantic\*.java src\syntaxtree\*.java src\visitor\*.java src\Frame\*.java src\Mips\*.java src\Temp\*.java src\util\*.java src\Main.java
+
+java -cp build Main input\Test1.java

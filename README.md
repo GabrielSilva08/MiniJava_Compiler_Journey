@@ -1,57 +1,89 @@
-# Compilador MiniJava → MIPS
+# 🛠️ Minijava Compiler
 
-Este repositório tem como objetivo **servir como um guia prático e incremental para o estudo de compiladores**, combinando implementação real em Java com a teoria apresentada no livro _Modern Compiler Implementation in Java_ (Andrew W. Appel).
+Projeto da disciplina **Construção de Compiladores** - Universidade Federal do Ceará (UFC)
 
-Ao invés de apresentar apenas um compilador finalizado, o projeto é organizado em **branches incrementais**, onde cada branch corresponde a uma etapa clássica do processo de compilação, construindo-se sempre sobre a etapa anterior.
-
-A linguagem fonte utilizada é **MiniJava**, um subconjunto simples (mas não trivial) da linguagem Java, e a linguagem alvo é **MIPS assembly**.
+Este projeto implementa um compilador completo da linguagem **Minijava** para a linguagem de máquina **MISP**, cobrindo todas as principais etapas de um processo moderno de compilação.
 
 ---
 
-## 🧱 Organização do Repositório
+## 👨‍💻 Integrantes
 
-- A branch `main` funciona como um ponto de entrada e documentação geral do projeto.
-- Cada etapa do compilador é implementada em **uma branch própria**.
-- As branches são **incrementais**: cada uma parte diretamente da anterior.
-- Cada branch é acompanhada por notas de aulas que visam explicar melhor a teoria por trás da etapa referente na compilação.
-
-📌 **Importante**:  
-Não é necessário entender todo o compilador para acompanhar o projeto. Cada branch é autocontida do ponto de vista de entendimento.
+- **Denis da Silva Victor**
+- **Gabriel Silva Ribeiro**
+- **Pedro Henrique de Oliveira Gomes**
 
 ---
 
-## 🌿 Etapas do Compilador (Branches)
+## 📦 Etapas do Compilador
 
-| Etapa | Descrição | Branch | Status |
-|------|----------|--------|--------|
-| 1 | Análise Léxica | `step-01-lexer` | ⏳ Em andamento |
-| 2 | Análise Sintática | `step-02-parser` | ❌ Não iniciado |
-| 3 | Análise Semântica | `step-03-semantic-analysis` | ❌ Não iniciado |
-| 4 | Tradução para Código Intermediário (IR) | `step-04-ir-translation` | ❌ Não iniciado |
-| 5 | Seleção de Instruções | `step-05-instruction-selection` | ❌ Não iniciado |
-| 6 | Alocação de Registradores | `step-06-register-allocation` | ❌ Não iniciado |
-| 7 | **Compilador Completo** | `step-07-complete-compiler` | ❌ Não iniciado |
-
-Cada branch possui:
-- Código-fonte (devidamente comemtado) correspondente à etapa
-- Notas de aula explicando a teoria envolvida
-- Exemplos e instruções de execução
+| Etapa                                    | Status         | Subetapas                                                  |
+|-----------------------------------------|----------------|-------------------------------------------------------------|
+| 1. Analisador Léxico e Sintático        | 🟢 Finalizado | - ✅ Analisador Léxico<br>- ✅ Analisador Sintático         |
+| 2. AST e Análise Semântica              | 🟢 Finalizado | - ✅ Construção da AST<br>- ✅ Verificações Semânticas           |
+| 3. Tradução para Código Intermediário   | 🟢 Finalizado | - ✅ Registros de Ativação<br>- ✅ Construção da IRTree<br>- ✅ Blocos básicos e Traços                   |
+| 4. Seleção de Instruções                | 🟢 Finalizado | - ✅ Algoritmo de Ladrilhamento (Maximal Munch)<br>- ✅ Mapeamento para instruções MISP |
+| 5. Análise de Longevidade e Alocação de Registradores            | 🟢 Finalizado | - ✅ Geração do grafo de fluxo<br>- ✅ Geração do grafo de interferência<br>- ✅ Mapeamento de variáveis para registradores               |
+| 6. Integração e Geração do Código Final | 🟢 Finalizado | - ✅ Montagem final do código MISP<br>- ✅ Integração e testes   |
 
 ---
 
-## 📚 Referência Teórica
+## 🧰 Tecnologias Utilizadas
 
-Este projeto é fortemente baseado no livro:
-
-> **Andrew W. Appel, Modern Compiler Implementation in Java**
-
-A estrutura do compilador, os nomes das fases e várias decisões arquiteturais seguem o livro o mais fielmente possível, com adaptações quando necessário.
+- Java 17+
+- JavaCC
+- GitLab para versionamento e colaboração
 
 ---
 
-## 🚀 Como usar este repositório
+## 📁 Estrutura do Projeto
 
-1. Clone o repositório:
-   
-   ```bash
-   git clone https://github.com/seu-usuario/MiniJava_Compiler_Journey.git
+```bash
+MinijavaCompiler/
+├── .vscode/                            # Arquivos de depuração
+├── docs/                               # Documentação do projeto
+│   └── compilation_process.txt         # Anotações rápidas do processo de compilação
+├── src/
+│   ├── parser/                         # Analise léxica e sintática
+│   ├── syntaxtree/                     # Árvore sintática abstrata
+│   ├── semantic/                       # Análise semântica
+│   │   └── SymbolTable/                # Parte do gerador da Tabela de Símbolos
+│   ├── Temp/                           # Temporários (Registradores)
+│   ├── frame/                          # Registros de ativação 
+│   ├── mips/                           # Interface própria para o MIPS
+│   ├── Tree/                           # Classes da IRTree
+│   ├── Translate/                      # Tradução para IR (Código intermediário)
+│   ├── canon/                          # Canonização da IR
+│   ├── Assem/                          # Interface para seleção de instruções
+│   ├── Graph/                          # Classe de grafo abstrata
+│   ├── FlowGraph/                      # Criação do grafo de fluxo 
+│   ├── RegAlloc/                       # Criação do grafo de interferência
+│   ├── visitor/                        # Implementação de visitors
+│   ├── util/                           # Utilitários diversos
+│   └── Main.java            
+├── input/                              # Arquivos fontes de entrada
+├── scripts/                            # Scripts auxiliares (build, exec, etc.)
+│   ├── build.bat                       # Script de compilação do compilador
+│   ├── run.bat                         # Script de execução do compilador
+│   └── test_all.bat                    # Script de teste do compilador
+├── build/                              # Saída de compilação
+├── .gitignore
+└── README.md
+```
+
+---
+
+## 🚀 Como Executar
+
+1. Para compilar o compilador basta executar na raiz do projeto,
+
+```bash
+scripts\build.bat
+```
+
+2. Para executar o compilador para um certo arquivo de entrada, basta modificar o argumento no arquivo `run.bat` e executar na raiz do projeto,
+
+```bash
+scripts\run.bat
+```
+
+**OBS: Conforme os outros módulos do compilador vão sendo implementados, sempre manter esses arquivos `.bat` atualizados!**
